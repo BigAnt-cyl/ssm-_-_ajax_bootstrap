@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!--加载数据库常量配置文件
+    <properties resource="db.properties"/>
+
+    &lt;!&ndash;该包下的类起别名&ndash;&gt;
+    <typeAliases>
+        <package name="cn.cyl.domain"/>
+    </typeAliases>
+
+    &lt;!&ndash;配置mybatis的开发环境，该目录下可以有多个environment,
+    	和spring整合后 environments配置将废除&ndash;&gt;
+    <environments default="mysql">&lt;!&ndash;当前默认选择的是mysql环境&ndash;&gt;
+        &lt;!&ndash;配置mysql的环境&ndash;&gt;
+        <environment id="mysql">
+            &lt;!&ndash;配置事务的类型：jdbc事务管理&ndash;&gt;
+            <transactionManager type="JDBC"/>
+            &lt;!&ndash;配置连接数据库的信息：用的是数据源（连接池）&ndash;&gt;
+            <dataSource type="POOLED">
+                &lt;!&ndash;四大配置信息&ndash;&gt;
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    &lt;!&ndash;配置多个映射文件，告知mybatis映射配置的位置&ndash;&gt;
+    <mappers>
+        <package name="cn.cyl.dao"/>
+    </mappers>-->
+
+    <!--
+      参数合理化
+                如果当前currPage < 1  则按currPage = 1查询
+                如果当前currPage > totalPage  则按currPage = totalPage 查询
+       -->
+
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
+
+</configuration>
